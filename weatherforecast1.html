@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="weatherforecast1.css">
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <img src="Top-10-cities-of-Pakistan-based-on-Population.webp" class="background">
+    <div class="whole">
+        <div class="main">
+            <h1>
+                Five Days Weather Forecast
+            </h1>
+        </div>
+        <h4 id="h4">Search for a city</h4>
+        <div class="searchfield">
+            <label for="search">SEARCH: </label>
+            <input type="text" id="search">
+        </div>
+        <div class="button">
+            <button id="searchbtn" class="searchbtn" type="button">Enter</button>
+        </div>
+        <p class="city" id="city">City</p>
+        <div class="days">
+            <div class="div1">
+                <p class="day1" id="day1">Day 1</p>
+                <p id="temp1">Temperature</p>
+                <div class="wind" id="wind1"> Wind</div>
+                <div class="humidity" id="humidity1">Humidity</div>
+                <p id="weather1"></p>
+                <p class="temp"></p>
+                <p><img src="" alt="" id="weath1"></p>
+            </div>
+            <div class="div2">
+                <p class="day2" id="day2">Day 2</p>
+                <p id="temp2">Temperature</p>
+                <div class="wind" id="wind2">Wind</div>
+                <div class="humidity" id="humidity2">Humidity</div>
+                <p id="weather2"></p>
+                <p><img src="" alt="" id="weath2"></p>
+            </div>
+            <div class="div3">
+                <p class="day3" id="day3">Day 3</p>
+                <p id="temp3">Temperature</p>
+                <div class="wind" id="wind3">Wind</div>
+                <div class="humidity" id="humidity3">Humidity</div>
+                <p id="weather3"></p>
+                <p><img src="" alt="" id="weath3"></p>
+            </div>
+            <div class="div4">
+                <p class="day4" id="day4">Day 4</p>
+                <p id="temp4">Temperature</p>
+                <div class="wind" id="wind4">Wind</div>
+                <div class="humidity" id="humidity4">Humidity</div>
+                <p id="weather4"></p>
+                <p><img src="" alt="" id="weath4"></p>
+            </div>
+            <div class="div5">
+                <p class="day5" id="day5">Day 5</p>
+                <p id="temp5">Temperature</p>
+                <div class="wind" id="wind5">Wind</div>
+                <div class="humidity" id="humidity5">Humidity</div>
+                <p id="weather5"></p>
+                <p><img src="" alt="" id="weath5"></p>
+            </div>
+        </div>
+</body>
+<!-- <script>
+    window.onload=function(){
+    var searchvalue;
+    var wind;
+    let weather2;
+    let endpoint
+    let icon;
+    let icon1;
+    let weatherApikey = '417f1e49431b3c399c9526d469fbf20c';
+    let weatherbaseEndpoint = 'https://api.openweathermap.org/data/2.5/forecast?units=metric&appid=' + weatherApikey;
+    document.getElementById('searchbtn').onclick = function () {
+        searchvalue = document.getElementById('search').value;
+        var xmlhttp = new XMLHttpRequest();
+        endpoint = weatherbaseEndpoint + '&q=' + searchvalue;
+        let d = new Date();
+        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        let day = d.getDay();
+        let day1 = day;
+        for (var i = 0; i < 5; i++) {
+            if (i == 0) {
+                document.getElementById("day1").innerHTML = days[day1];
+            }
+            else {
+                day = day1 + i;
+                if (day == 7) {
+                    day = 0;
+                }
+                document.getElementById("day" + (i + 1)).innerHTML = days[day];
+            }
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('h4').innerHTML = 'The weather forecast of ' + searchvalue + ' for five days are displayed down below';
+                var weather3 = JSON.parse(this.responseText);
+                document.getElementById('city').innerHTML = searchvalue;
+                document.getElementById('temp1').innerHTML = 'Temperature: ' + weather3.list[0].main.temp + '°C';
+                document.getElementById('weather1').innerHTML = 'Weather: ' + weather3.list[0].weather[0].description;
+                document.getElementById('wind1').innerHTML = 'Wind: ' + weather3.list[0].wind.speed;
+                document.getElementById('humidity1').innerHTML = 'Humidity: ' + weather3.list[0].main.humidity;
+                icon = weather3.list[0].weather[0].icon;
+                icon1 = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+                document.getElementById('weath1').src = icon1;
+                var i = 1;
+                    if(i<=4){
+                    for (var j = 1; j<=39; j++) {
+                        string = weather3.list[j].dt_txt;
+                        if(string.includes("00:00:00")){
+                            document.getElementById('temp' + (i + 1)).innerHTML = 'Temperature: ' + weather3.list[j].main.temp + '°C';
+                            document.getElementById('weather' + (i + 1)).innerHTML = 'Weather: ' + weather3.list[j].weather[0].description;
+                            document.getElementById('wind' + (i + 1)).innerHTML = 'Wind: ' + weather3.list[j].wind.speed;
+                            document.getElementById('humidity' + (i + 1)).innerHTML = 'Humidity: ' + weather3.list[j].main.humidity;
+                            icon = weather3.list[j].weather[0].icon;
+                            icon1 = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+                            document.getElementById('weath' + (i + 1)).src = icon1;
+                            i=i+1;
+                        }
+                    }
+                }
+            }
+            else {
+                    document.getElementById('h4').innerHTML = searchvalue + ' was not found';
+                }
+        }
+        xmlhttp.open("GET", endpoint, true);
+        xmlhttp.send();
+    }
+   }
+</script> -->
+<!-- Jquery -->
+<script src="jquery-3.6.1.min.js"></script>
+<script>
+    var searchvalue;
+    let icon;
+    let d = new Date();
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let day = d.getDay();
+    let day1 = day;
+    let weatherApikey = "417f1e49431b3c399c9526d469fbf20c";
+    let weatherbaseEndpoint = "https://api.openweathermap.org/data/2.5/forecast?units=metric&appid=" + weatherApikey;
+    var endpoint;
+    $('#searchbtn').click(function () {
+        searchvalue = $('#search').val();
+        endpoint = weatherbaseEndpoint + "&q=" + searchvalue;
+        $.ajax({
+            url: endpoint,
+            type: "GET",
+            success: function (weather2) {
+                $('#h4').text('The weather conditions of ' + searchvalue + ' are displayed down below');
+                $('#temp1').text(weather2.list[0].main.temp);
+                $('#city').text(searchvalue);
+                $('#temp1').text('Temperature: ' + weather2.list[0].main.temp + '°C');
+                    $('#weather1').text('Weather: ' + weather2.list[0].weather[0].description);
+                    $('#wind1').text('Wind: ' + weather2.list[0].wind.speed);
+                    $('#humidity1').text('Humidity: ' + weather2.list[0].main.humidity);
+                    icon = weather2.list[0].weather[0].icon;
+                    let icon1 = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+                    $('#weath1').attr("src", icon1);
+                    var stringnew=weather2.list[0].dt_txt;
+                    var string1new= stringnew.split("-");
+                    var string3=string1new[2].split(" ");
+                    var string,string1,string2;
+                    var num;
+                    var i=1;
+                    while(i<5){
+                        for (var j = 1; j < 40; j++) {
+                    string=weather2.list[j].dt_txt;
+                    string1= string.split("-");
+                    string2=string1[2].split(' ');
+                    if(string2[0]!=string3[0]){
+                        string3[0]=string2[0];
+                            $('#temp' + (i + 1)).text('Temperature: ' + weather2.list[i].main.temp + '°C');
+                    $('#weather' + (i + 1)).text('Weather: ' + weather2.list[i].weather[0].description);
+                    $('#wind' + (i + 1)).text('Wind: ' + weather2.list[i].wind.speed);
+                    $('#humidity' + (i + 1)).text('Humidity: ' + weather2.list[i].main.humidity);
+                    icon = weather2.list[i].weather[0].icon;
+                    let icon1 = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+                    $('#weath' + (i + 1)).attr("src", icon1);
+                    i++;
+                    }
+                    }
+                }
+                    for(var i=0; i<5;i++){
+                    if (i == 0) {
+                        $('#day1').text(days[day1]);
+                    }
+                    else {
+                        day = day1 + i;
+                        if (day == 7) {
+                            day = 0;
+                        }
+                        $('#day' + (i + 1)).text(days[day]);
+                    }}
+            },
+            error: function (error) {
+                $('#h4').text(searchvalue + ' was not found');
+            }
+        })
+    })
+</script>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="weatherforecast.css">
+</head>
+
+<body onload="Days()">
+    <img src="Top-10-cities-of-Pakistan-based-on-Population.webp" class="background">
+    <div id="whole">
+        <div class="main" id="main">
+            <h1>
+                Weather Forecast
+            </h1>
+        </div>
+        <div class="intro" id="intro">
+            <h4 id="h4">Search for a city</h4>
+            <div class="searchfield">
+                <label for="search">SEARCH: </label>
+                <input type="text" id="search">
+                <label for="select">DAY: </label>
+                <select name="days" id="select">
+
+                </select>
+            </div>
+            <div class="button">
+                <button id="searchbtn" class="searchbtn" type="button"><b>Enter</b></button>
+            </div>
+            <p class="city" id="city">City</p>
+            <p class="day" id="day">Day</p>
+        </div>
+        <div class="current" id="current">
+            <div class="cardmain">
+                <p id="weather">Weather</p>
+                <p class="Weather1" id="Weather1">Weather</p>
+                <p><img src="" alt="" id="weather12"></p>
+            </div>
+            <div class="card">
+                <p id="temperature">Temperature</p>
+                <p class="temptoday" id="temptoday">Temperature</p>
+                <img src="temp.png" alt="" class="img">
+            </div>
+            <div class="card1">
+                <p id="wind">Wind</p>
+                <p class="windtoday" id="windtoday">Wind</p>
+                <img src="wind.png" alt="" class="img">
+            </div>
+            <div class="card2">
+                <p id="humidity">Humidity</p>
+                <p class="humiditytoday" id="humiditytoday">Humidity</p>
+                <img src="humidity.png" alt="" class="img">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var options;
+    const d = new Date();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let day = d.getDay()
+    let day1 = day;
+    function Days() {
+        document.getElementById("day").innerHTML = 'Today is ' + days[day];
+        for (var j = 0; j < 5; j++) {
+            day = day1 + j;
+            if (day < 7) {
+                options += "<option value='" + j + "'>" + days[day] + "</option>";
+            }
+            else {
+                day = day - 7
+                options += '<option value="' + j + '">' + days[day] + '</option>';
+            }
+        }
+        document.getElementById("select").innerHTML = options;
+    }
+    var searchvalue;
+    var wind;
+    let weather2;
+    let endpoint
+    let icon;
+    let weatherApikey = '417f1e49431b3c399c9526d469fbf20c';
+    let weatherbaseEndpoint = 'https://api.openweathermap.org/data/2.5/forecast?&units=metric&cnt=5&appid=' + weatherApikey;
+    document.getElementById('searchbtn').onclick = function() {
+        searchvalue = document.getElementById('search').value;
+        var xmlhttp = new XMLHttpRequest();
+        endpoint = weatherbaseEndpoint + '&q=' + searchvalue;
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('h4').innerHTML = 'The weather conditions of ' + searchvalue + ' are displayed down below';
+                var weather3 = JSON.parse(this.responseText);
+                var optionselected = document.getElementById('select').value;
+                for (var i = 0; i < 5; i++) {
+                    document.getElementById('city').innerHTML = searchvalue;
+                    if (optionselected == i) {
+                        document.getElementById('temptoday').innerHTML = weather3.list[i].main.temp + '°C';
+                        document.getElementById('Weather1').innerHTML = weather3.list[i].weather[0].description;
+                        document.getElementById('windtoday').innerHTML = weather3.list[i].wind.speed;
+                        document.getElementById('humiditytoday').innerHTML = weather3.list[i].main.humidity;
+                        icon = weather3.list[i].weather[0].icon;
+                        icon1 = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+                        document.getElementById('weather12').src = icon1;
+                        if (i == 0) {
+                            document.getElementById("day").innerHTML = 'Today is ' + days[day1];
+                        }
+                        else {
+                            day = day1 + i;
+                            if (day > 6) {
+                                day = day - 7;
+                            }
+                            document.getElementById("day").innerHTML = 'Today is ' + days[day];
+                        }
+                    }
+                }
+            }
+            else {
+                document.getElementById('h4').innerHTML = searchvalue + ' was not found';
+            }
+        }
+        xmlhttp.open("GET", endpoint, true);
+        xmlhttp.send();
+    }
+</script>
+<!-- <script src="jquery-3.6.1.min.js"></script>
+<script>
+    var options;
+    const d = new Date();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let day = d.getDay()
+    let day1 = day;
+    function Days() {
+        $('#day').text('Today is ' + days[day]);
+        for (var j = 0; j < 5; j++) {
+            day = day1 + j;
+            if (day < 7) {
+                options += "<option value='" + j + "'>" + days[day] + "</option>";
+            }
+            else {
+                day = day - 7
+                options += '<option value="' + j + '">' + days[day] + '</option>';
+            }
+        }
+        $('#select').append(options);
+    }
+    var searchvalue;
+    let icon;
+    let weatherApikey = "417f1e49431b3c399c9526d469fbf20c";
+    let weatherbaseEndpoint = "https://api.openweathermap.org/data/2.5/forecast?units=metric&cnt=5&appid=" + weatherApikey;
+    var endpoint;
+    $('#searchbtn').click(function () {
+        searchvalue = $('#search').val();
+        console.log(searchvalue);
+        endpoint = weatherbaseEndpoint + "&q=" + searchvalue;
+        $.ajax({
+            url: endpoint,
+            type: "GET",
+            success: function (weather3) {
+                $('#h4').text('The weather conditions of ' + searchvalue + ' are displayed down below');
+                console.log(weather3);
+                var optionselected = $('#select').val();
+                for (var i = 0; i < 5; i++) {
+                    if (optionselected == i) {
+                        icon = weather3.list[i].weather[0].icon;
+                        let icon1 = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+                        $('#city').text(searchvalue);
+                        $('#temptoday').text(weather3.list[i].main.temp + '°C');
+                        $('#windtoday').text(weather3.list[i].wind.speed + '');
+                        $('#humiditytoday').text(weather3.list[i].main.humidity);
+                        $('#weather12').attr("src", icon1);
+                        $('#Weather1').text(weather3.list[i].weather[0].description);
+                        if (i == 0) {
+                            $('#day').text('Today is ' + days[day1]);
+                        }
+                        else {
+                            day = day1 + i;
+                            if (day > 6) {
+                                day = day - 7;
+                            }
+                            $('#day').text('Today is ' + days[day]);
+                        }
+                    }
+                }
+            },
+            error: function (error) {
+                $('#h4').text(searchvalue + 'was not found');
+            }
+        })
+    })
+</script> -->
+
+</html>

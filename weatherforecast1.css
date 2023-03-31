@@ -1,0 +1,90 @@
+*{
+    padding:0%;
+    margin:0%;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.whole{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+}
+.searchfield{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+}
+.days{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div1,.div2,.div3,.div4,.div5{
+    width: 15rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+    height: 300px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 25px;
+    margin: 10px;
+    color: white;
+}
+h1{
+    text-align: center;
+    font-size: 80px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.main{
+    color: white;
+    align-items: center;
+}
+input{
+    font-size: 30px;
+    background-color: transparent;
+    border-radius: 15px;
+    color: white;
+    margin-right: 60px;
+}
+.searchbtn{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
+    font-size: 20px;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    background: transparent;
+    background-color: transparent;
+    color: white;
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0;
+}
+label{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: white;
+}
+.city{
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+h4{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+.background{
+    width: 100vw;
+    height: 100vh;
+    filter: brightness(30%);
+}
